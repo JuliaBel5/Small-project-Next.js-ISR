@@ -1,41 +1,33 @@
-type Product = {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-};
+import { ProductItemPage } from "@/app/components/ProductItemPage";
+import { fetchProducts } from "@/app/services/productService";
+import { Product } from "@/app/types/product";
+
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  const products = await fetch("http://localhost:3000/api/products").then(
-    (res) => res.json()
-  );
-  return products.map((product: { id: string }) => ({ id: product.id }));
+  const products = await fetchProducts(); // the revalidation is set to 60 sec
+  return products.map((product: { id: number }) => ({
+    id: String(product.id),
+  }));
 }
-
-export const revalidate = 60;
 
 export default async function ProductPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const products: Product[] = await fetchProducts();
   const { id } = await params;
 
-  const products: Product[] = await fetch(
-    "http://localhost:3000/api/products"
-  ).then((res) => res.json());
-
-  const product = products.find((p) => p.id === id);
+  const product = products.find((p) => p.id === Number(id));
 
   if (!product) {
     return <h1>Product not found</h1>;
   }
 
   return (
-    <main>
-      <h1>{product.name}</h1>
-      <p>{product.description}</p>
-      <p>Price: ${product.price}</p>
-    </main>
+    <div>
+      <ProductItemPage product={product} />
+    </div>
   );
 }

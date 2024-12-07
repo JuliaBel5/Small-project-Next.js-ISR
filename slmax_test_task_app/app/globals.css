@@ -34,6 +34,36 @@ a {
   color: inherit;
   text-decoration: none;
 }
+a:hover {
+  background-color: inherit;
+}
+
+[data-mantine-color-scheme="light"] .m_f0824112:hover {
+  background-color: rgb(201, 228, 168);
+  border-radius: 15px;
+}
+
+.nav-item {
+  color: #7c6660;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.product-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.product-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+.footer-link:hover {
+  font-weight: 800;
+  color: #242121;
+}
+.header-logo:hover {
+  font-weight: 800;
+  color: #242121;
+}
 
 @media (prefers-color-scheme: dark) {
   html {

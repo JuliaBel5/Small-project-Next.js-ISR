@@ -1,36 +1,31 @@
-import Link from "next/link";
+import { urls } from "@/constants/urls";
+import { ProductList } from "./components/ProductList";
+import { Product } from "./types/product";
+import { Box, Title } from "@mantine/core";
 
-type Product = {
-  id: string;
-  name: string;
-};
-
-export const revalidate = 60;
+async function fetchProducts(): Promise<Product[]> {
+  const response = await fetch(urls.products.getProducts);
+  if (!response.ok) {
+    throw new Error("Failed to fetch products");
+  }
+  return response.json();
+}
 
 export default async function HomePage() {
-  try {
-    const response = await fetch("http://localhost:3000/api/products");
+  const products = await fetchProducts();
 
-    if (!response.ok) {
-      throw new Error(`Failed to fetch products: ${response.statusText}`);
-    }
-
-    const products: Product[] = await response.json();
-
-    return (
-      <div>
-        <h1>Product List</h1>
-        <ul>
-          {products.map((product) => (
-            <li key={product.id}>
-              <Link href={`/products/${product.id}`}>{product.name}</Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-  } catch (error) {
-    console.error("Error fetching products:", error);
-    return <div>Failed to load products. Please try again later.</div>;
-  }
+  return (
+    <Box
+      display="flex"
+      style={{
+        flexDirection: "column",
+        justifyContent: "center",
+      }}
+    >
+      <Title c="#7c6660" order={1} my={20} style={{ textAlign: "center" }}>
+        Product List
+      </Title>
+      <ProductList products={products} />
+    </Box>
+  );
 }
