@@ -1,5 +1,3 @@
-"use client";
-
 import { Box, Text, Flex, Anchor, Image } from "@mantine/core";
 
 export const Footer = () => {
@@ -13,7 +11,12 @@ export const Footer = () => {
       }}
     >
       <Flex justify="space-between" align="center">
-        <Text c="#7c6660">© December 2024</Text>
+        <Text
+          c="#7c6660"
+          style={{ textShadow: "0 2px 4px rgba(0, 0, 0, 0.3)" }}
+        >
+          © December 2024
+        </Text>
 
         <Anchor
           href="https://github.com/JuliaBel5"
@@ -21,10 +24,10 @@ export const Footer = () => {
           rel="noopener noreferrer"
           style={{
             color: "#7c6660",
-            textDecoration: "none",
             display: "flex",
             alignItems: "center",
             transition: "font-size 0.2s ease",
+            textShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
           }}
           className="footer-link"
         >

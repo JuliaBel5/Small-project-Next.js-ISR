@@ -65,6 +65,7 @@ export const ProductItemPage = ({ product }: ProductPageProps) => {
             fontSize: "18px",
             padding: "10px",
             height: "45px",
+            textShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
           }}
         >
           Add to Cart

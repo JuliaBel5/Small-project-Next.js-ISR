@@ -1,6 +1,7 @@
 import { Box, Image, Flex, Title } from "@mantine/core";
 import Link from "next/link";
 import NavItem from "./NavItem";
+import { FiShoppingCart } from "react-icons/fi";
 
 export const Header = () => {
   return (
@@ -38,7 +39,7 @@ export const Header = () => {
           <NavItem label="Home" href="/" />
           <NavItem label="About" href="/about" />
           <NavItem label="Contact" href="/contact" />
-          <NavItem label="Cart" href="/cart" />
+          <NavItem label="Cart" href="/cart" icon={<FiShoppingCart />} />
         </Flex>
       </Flex>
     </Box>

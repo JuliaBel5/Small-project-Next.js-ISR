@@ -24,7 +24,9 @@ export const ProductCard = ({ product }: { product: Product }) => {
         </Box>
       </Link>
       <Flex justify="space-between" style={{ marginTop: 15 }}>
-        <Text w={500}>{product.name}</Text>
+        <Text w={500} c="#7c6660">
+          {product.name}
+        </Text>
         <Text size="sm" c="gray">
           ${product.price}
         </Text>
@@ -37,7 +39,10 @@ export const ProductCard = ({ product }: { product: Product }) => {
       <Button
         component={Link}
         href={`/products/${product.id}`}
-        style={{ marginTop: 15 }}
+        style={{
+          marginTop: 15,
+          textShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
+        }}
         color="#c4dda4"
       >
         View Details
