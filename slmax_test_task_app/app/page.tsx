@@ -1,15 +1,6 @@
-import { urls } from "@/constants/urls";
 import { ProductList } from "./components/ProductList";
-import { Product } from "./types/product";
 import { Box, Title } from "@mantine/core";
-
-async function fetchProducts(): Promise<Product[]> {
-  const response = await fetch(urls.products.getProducts);
-  if (!response.ok) {
-    throw new Error("Failed to fetch products");
-  }
-  return response.json();
-}
+import { fetchProducts } from "./services/productService";
 
 export default async function HomePage() {
   const products = await fetchProducts();
